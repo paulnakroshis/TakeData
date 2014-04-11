@@ -21,17 +21,17 @@ dataTime = np.array([])
 runParams = {
     'runName':'2014-04-11-run-00',
     'pendulum':'Glass Disk & Alum Loop',
-    'micrometer':'6.91 mm',
+    'micrometer':'6.77 mm',
     'runFile':'2014-04-11-run-00-Data.txt',
-    'tmax':400.0,
+    'tmax':180.0,
     'res':8,
     'settling':5}
 run = '2014-04-11-run-00'   # data file base name
 pendulum = 'Glass Disc & Al Loop'
-micrometer = '6.91 mm'      # torsional micrometer setting
+micrometer = '6.77 mm'      # torsional micrometer setting
 runFile = run + '-Data.txt'
 columnHeadings = ' Time (S)   sumSignal  LR_Signal  TB_Signal'
-tmax = 400.0     # run time
+tmax = 180.0     # run time
 res = 8         # resolution: 0=default, 1-8 high speed ADC; 9-12 high res ADC
 setFactor = 5   # settling factor: 0 = auto, 1=20 us, 2=50 us, 3=100 us
                 # 4=200 us, 5=500 us, 6=1 ms, 7=2 ms, 8=5ms, 9=10 ms
@@ -106,10 +106,10 @@ stopTime = ' run end = ' +  str(stop) + '\n'
 runTime = (stop-start).seconds + float((stop-start).microseconds)/1.0e6
 print "The experiment took %s seconds." % runTime
 hdrText +=  stopTime
-hdrText += columnHeadings
+hdrText += columnHeadings + '\n'
 
 np.savetxt(runFile,np.c_[dataTime,sumSignal, LR_Signal,TB_Signal],\
-fmt='%10.6f', delimiter='\t', header = hdrText)
+fmt='%10.6f', delimiter = '\t', header = hdrText)
 print 'Data file ' + runFile + ' written to disc \n'
 print hdrText + '\n'
 
@@ -121,7 +121,7 @@ plt.axis('off')
 plt.xlim(0,1)
 plt.ylim(0,1)
 plt.title('Run Summary: Run = ' + run, fontsize=20)
-plt.text(0, 0.9, hdrText)
+plt.text(0.05, -0.3, hdrText)
 
 plt.subplot(612)
 plt.plot(dataTime, sumSignal)
@@ -145,10 +145,12 @@ n = len(dataTime)
 dt = dataTime[1:n-1] - dataTime[0:n-2]
 print type(dt)
 print dt.mean()
+plt.ylabel('Sampling Time Histogram')
 plt.hist(dt,bins=100)
 
 plt.subplot(616)
 plt.plot(dataTime[0:n-2],dt)
+plt.ylabel('Sampling Time Intervals')
 plt.tight_layout()
 plt.savefig(run + 'Summary'+ '.pdf', dpi=300, orientation='landscape', format='pdf', transparent=False, bbox_inches=None, pad_inches=0.1)
 plt.show()
