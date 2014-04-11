@@ -19,18 +19,19 @@ dataTime = np.array([])
 #### The parameters are stored as a python dictionary:
 ####
 runParams = {
-    'runName':'2014-03-07-run-03',
+    'runName':'2014-04-11-run-00',
     'pendulum':'Glass Disk & Alum Loop',
-    'micrometer':'6.35 mm',
-    'runFile':'2014-03-07-run-03-Data.txt',
-    'tmax':60.0,
-    'res'}
-run = '2014-03-07-run-03'   # data file base name
+    'micrometer':'6.91 mm',
+    'runFile':'2014-04-11-run-00-Data.txt',
+    'tmax':400.0,
+    'res':8,
+    'settling':5}
+run = '2014-04-11-run-00'   # data file base name
 pendulum = 'Glass Disc & Al Loop'
-micrometer = '6.65 mm'      # torsional micrometer setting
-runFile = run + 'Data.txt'
+micrometer = '6.91 mm'      # torsional micrometer setting
+runFile = run + '-Data.txt'
 columnHeadings = ' Time (S)   sumSignal  LR_Signal  TB_Signal'
-tmax = 60.0     # run time
+tmax = 400.0     # run time
 res = 8         # resolution: 0=default, 1-8 high speed ADC; 9-12 high res ADC
 setFactor = 5   # settling factor: 0 = auto, 1=20 us, 2=50 us, 3=100 us
                 # 4=200 us, 5=500 us, 6=1 ms, 7=2 ms, 8=5ms, 9=10 ms
