@@ -5,4 +5,4 @@ runFile         :2014-03-07-run-03-Data.txt
 tmax            :60.0 sec
 res             :8
 setFactor       :5
-columnHeadings  :Time (S)   sumSignal  LR_Signal  TB_Signal'
+columnHeadings  :Time (S)   sumSignal  LR_Signal  TB_Sig'
